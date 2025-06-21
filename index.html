@@ -104,6 +104,7 @@
 
     function sortear() {
       const status = document.getElementById("status");
+      const botao = document.getElementById("sortearBtn");
       status.classList.remove("fade-in");
       status.classList.add("fade-out");
 
@@ -116,6 +117,8 @@
 
         status.classList.remove("fade-out");
         status.classList.add("fade-in");
+
+        botao.innerText = "Status Mental Definido";
       }, 300);
     }
   </script>
