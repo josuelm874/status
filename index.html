@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Status do Dia</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #191919;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #191919;
+      border: 1px solid #ff2d2d;
+      border-radius: 12px;
+      padding: 16px 20px;
+      max-width: 960px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .status-line {
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: 0.95;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    button {
+      margin-top: 14px;
+      background: none;
+      color: white;
+      border: 1px solid #ff2d2d;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    button:hover {
+      background: #ff2d2d;
+      color: #000;
+    }
+
+    @media (max-width: 600px) {
+      .status-line {
+        font-size: 12px;
+        line-height: 1.4;
+        display: block;
+      }
+
+      .container {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="status-line fade-in" id="status">
+      🧠 Modo Ativo: - | 🧬 Perk Estratégica: - | 🎯 Alvo do Dia: -
+    </div>
+    <button onclick="sortear()">Sistema Mental: Reiniciar</button>
+  </div>
+
+  <script>
+    const modos = [
+      "Executor", "Estudioso", "Ascendente", "Mentor", "Executor Sombrio",
+      "Observador", "Executor Veloz", "Comandante", "Arquiteto", "Sentinela"
+    ];
+
+    const perks = [
+      "🧊 Mente Fria", "🎯 One Shot", "☕ Consciência Elevada", "🦾 Sem Falhas",
+      "🧠 Deep Flow", "💡 Claridade Imediata", "🚫 Sem Notificações", "👁️ Olho Fixo",
+      "🩸 Força Mesmo Cansado", "🔕 Silêncio é meu território"
+    ];
+
+    const alvos = [
+      "Estudo profundo", "Treino completo", "Não se distrair", "Tarefa ignorada há dias",
+      "Autocontrole em ambiente difícil", "Evitar reatividade", "Leitura importante",
+      "Dominar nova habilidade", "Escrever com clareza", "Executar sem hesitar"
+    ];
+
+    function sortear() {
+      const status = document.getElementById("status");
+      status.classList.remove("fade-in");
+      status.classList.add("fade-out");
+
+      setTimeout(() => {
+        const modo = modos[Math.floor(Math.random() * modos.length)];
+        const perk = perks[Math.floor(Math.random() * perks.length)];
+        const alvo = alvos[Math.floor(Math.random() * alvos.length)];
+
+        status.innerText = `🧠 Modo Ativo: ${modo} | 🧬 Perk Estratégica: ${perk} | 🎯 Alvo do Dia: ${alvo}`;
+
+        status.classList.remove("fade-out");
+        status.classList.add("fade-in");
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
